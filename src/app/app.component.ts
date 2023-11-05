@@ -7,8 +7,7 @@ import { SafeUrl } from '@angular/platform-browser';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'gerador';
-  texto: string = '';
+  texto = '';
   public qrCodeDownloadLink: SafeUrl = "";
 
   onChangeURL(url: SafeUrl) {

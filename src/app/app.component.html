@@ -1,24 +1,27 @@
-<input type="text" [(ngModel)]="texto">
-
-<div class="qrcodeImage">
-	<qrcode
-	  [qrdata]="texto"
-	  [allowEmptyString]="true"
-	  [ariaLabel]="'QR Code image with the following content...'"
-	  [cssClass]="'center'"
-	  [colorDark]="'#000000ff'"
-	  [colorLight]="'#ffffffff'"
-	  [elementType]="'canvas'"
-	  [errorCorrectionLevel]="'H'"
-	  [imageSrc]="'./icon-96x96.png'"
-	  [imageHeight]="75"
-	  [imageWidth]="75"
-	  [margin]="4"
-	  [scale]="128"
-	  [title]="'A custom title attribute'"
-	  [width]="400"
-	  (qrCodeURL)="onChangeURL($event)"
-	></qrcode>
-  </div>
-
-  <a [href]="qrCodeDownloadLink" download="qrcode">Download</a>
+<div class="d-flex h-100 w-100 justify-content-center align-items-center">
+	<div class="card text-center">
+		<div class="card-header">
+			<label for="formInput" class="form-label">Seu Link</label>
+			<input id="formInput" class="form-control" type="text" [(ngModel)]="texto">
+		</div>
+		<div class="card-body">
+			<div class="qrcodeImage" *ngIf="texto.length > 0 && texto.trim() !== '' ">
+				<qrcode [qrdata]="texto" [allowEmptyString]="true"
+					[ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
+					[colorDark]="'#000000ff'" [colorLight]="'#ffffffff'" [elementType]="'canvas'"
+					[errorCorrectionLevel]="'H'" [imageHeight]="75" [imageWidth]="75"
+					[margin]="4" [scale]="128" [title]="'A custom title attribute'" [width]="400"
+					(qrCodeURL)="onChangeURL($event)"></qrcode>
+			</div>
+			<div *ngIf="texto.length <= 0 || texto.trim() === '' ">
+				<p>Seu QR Code será gerado aqui</p>
+			</div>
+		</div>
+		<div class="card-footer text-body-secondary">
+			<a *ngIf="texto.length > 0 && texto.trim() !== '' " [href]="qrCodeDownloadLink" class="btn btn-primary" download="{{texto.trim()}}">Download</a>
+			<div *ngIf="texto.length <= 0 || texto.trim() === '' ">
+				<p>Ficará disponível aqui o download do seu QR Code</p>
+			</div>
+		</div>
+	</div>
+</div>
