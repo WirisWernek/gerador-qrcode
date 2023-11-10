@@ -8,9 +8,12 @@ import { SafeUrl } from '@angular/platform-browser';
 })
 export class AppComponent {
   texto = '';
-  public qrCodeDownloadLink: SafeUrl = "";
+  public qrCodeDownloadLink: SafeUrl = '';
+
+  tam = 400;
 
   onChangeURL(url: SafeUrl) {
+    this.tam = screen.width >= 450 ? 400 : 330;
     this.qrCodeDownloadLink = url;
   }
 }
