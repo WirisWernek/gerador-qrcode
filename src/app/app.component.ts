@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
+import { QRCodeErrorCorrectionLevel } from 'qrcode';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,9 @@ import { SafeUrl } from '@angular/platform-browser';
 })
 export class AppComponent {
   texto = '';
-  public qrCodeDownloadLink: SafeUrl = '';
-
   tam = 400;
+  qualidade!: QRCodeErrorCorrectionLevel;
+  public qrCodeDownloadLink: SafeUrl = '';
 
   onChangeURL(url: SafeUrl) {
     this.tam = screen.width >= 450 ? 400 : 330;

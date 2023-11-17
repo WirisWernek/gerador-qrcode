@@ -1,15 +1,27 @@
 <div class="d-flex h-100 w-100 justify-content-center align-items-center">
 	<div class="card text-center">
 		<div class="card-header">
-			<label for="formInput" class="form-label">Seu Link</label>
-			<input id="formInput" class="form-control" type="text" [(ngModel)]="texto">
+			<div class="row">
+				<label for="formInput" class="form-label">Seu Link</label>
+				<input id="formInput" class="form-control" type="text" [(ngModel)]="texto">
+			</div>
+			<div class="row">
+				<label for="formSelect" class="form-label">Qualidade</label>
+				<select class="form-select" id="formSelect" aria-label="Seleção da qualidade do QR Code" [(ngModel)]="qualidade">
+					<option value="M" selected>Selecione uma Opção</option>
+					<option value="H">Alta</option>
+					<option value="Q">Boa</option>
+					<option value="M">Média</option>
+					<option value="L">Baixa</option>
+				  </select>
+			</div>
 		</div>
 		<div class="card-body">
 			<div class="qrcodeImage" *ngIf="texto.length > 0 && texto.trim() !== '' ">
 				<qrcode [qrdata]="texto" [allowEmptyString]="true"
 					[ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
 					[colorDark]="'#000000ff'" [colorLight]="'#ffffffff'" [elementType]="'canvas'"
-					[errorCorrectionLevel]="'H'"
+					[errorCorrectionLevel]="qualidade"
 					[margin]="4" [scale]="128" [title]="'QR Code Image'" [width]="tam"
 					(qrCodeURL)="onChangeURL($event)"></qrcode>
 			</div>
