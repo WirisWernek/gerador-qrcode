@@ -1,6 +1,6 @@
 {
-  "name": "gerador",
-  "short_name": "gerador",
+  "name": "Gerador QR Code",
+  "short_name": "QR Code",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
